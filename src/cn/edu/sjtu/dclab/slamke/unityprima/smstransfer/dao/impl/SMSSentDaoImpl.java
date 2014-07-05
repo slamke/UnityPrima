@@ -3,7 +3,6 @@ package cn.edu.sjtu.dclab.slamke.unityprima.smstransfer.dao.impl;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.sql.Statement;
 
 import cn.edu.sjtu.dclab.slamke.unityprima.smstransfer.dao.ISMSSentDao;
 import cn.edu.sjtu.dclab.slamke.unityprima.smstransfer.pojo.SMSSent;
@@ -25,7 +24,6 @@ public class SMSSentDaoImpl implements ISMSSentDao {
 		// TODO Auto-generated method stub
 		PreparedStatement ps = null;
 		Connection con = dbAccess.getConnection();
-		Statement statement = dbAccess.getStatement(con);
 		if (con != null) {
 			String sql = "insert into "
 					+ SMSSent.TABLE_NAME
@@ -93,7 +91,7 @@ public class SMSSentDaoImpl implements ISMSSentDao {
 				if (i == 1) {
 					res = true;
 				}
-				DBAccess.close(statement);
+				DBAccess.close(ps);
 				DBAccess.close(con);
 				return res;
 			} catch (Exception e) {

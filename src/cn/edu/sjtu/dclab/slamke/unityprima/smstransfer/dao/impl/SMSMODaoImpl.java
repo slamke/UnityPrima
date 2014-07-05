@@ -27,7 +27,6 @@ public class SMSMODaoImpl implements ISMSMODao {
 		// TODO Auto-generated method stub
 		PreparedStatement ps = null;
 		Connection con = dbAccess.getConnection();
-		Statement statement = dbAccess.getStatement(con);
 		if (con != null) {
 			String sql = "insert into "
 					+ SMSMO.TABLE_NAME
@@ -52,7 +51,7 @@ public class SMSMODaoImpl implements ISMSMODao {
 				if (i == 1) {
 					res = true;
 				}
-				DBAccess.close(statement);
+				DBAccess.close(ps);
 				DBAccess.close(con);
 				return res;
 			} catch (Exception e) {

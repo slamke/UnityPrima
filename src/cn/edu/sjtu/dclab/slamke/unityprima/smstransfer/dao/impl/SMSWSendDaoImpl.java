@@ -52,7 +52,6 @@ public class SMSWSendDaoImpl implements ISMSWSendDao {
             	send.setRemark(rs.getString("Remark"));
             	tasks.add(send);
             }  
-            rs.close();
             DBAccess.close(rs);
             DBAccess.close(statement);
             DBAccess.close(con);
@@ -101,7 +100,6 @@ public class SMSWSendDaoImpl implements ISMSWSendDao {
 		// TODO Auto-generated method stub
 		PreparedStatement ps = null;
 		Connection con = dbAccess.getConnection();
-		Statement statement = dbAccess.getStatement(con);
 		if (con != null) {
 			String sql = "delete from "
 					+ SMSWSend.TABLE_NAME
@@ -115,7 +113,7 @@ public class SMSWSendDaoImpl implements ISMSWSendDao {
 				if (i == 1) {
 					res = true;
 				}
-				DBAccess.close(statement);
+				DBAccess.close(ps);
 				DBAccess.close(con);
 				return res;
 			} catch (Exception e) {
@@ -132,8 +130,10 @@ public class SMSWSendDaoImpl implements ISMSWSendDao {
 		// TODO Auto-generated method stub
 		PreparedStatement ps = null;
 		Connection con = dbAccess.getConnection();  
+//        String sql = "update "+ SMSWSend.TABLE_NAME+
+//        		" set SubmitTime=? where Id="+send+ ";";
         String sql = "update "+ SMSWSend.TABLE_NAME+
-        		" set SubmitTime=? where Id="+send+ ";";
+        		" set SubmitTime=? where Id=?";
 		if (con != null) {			
 			try {
 				ps = con.prepareStatement(sql);
@@ -142,8 +142,9 @@ public class SMSWSendDaoImpl implements ISMSWSendDao {
 				}else {
 					ps.setDate(1, null);
 				}
+				ps.setLong(2, send.getId());
 				int i = ps.executeUpdate();
-				ps.close();
+				DBAccess.close(ps);
 	            DBAccess.close(con);
 				System.out.println("i=" + i);
 				if (i == 1) {
