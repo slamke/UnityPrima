@@ -53,7 +53,7 @@ public class SMSSent implements Serializable {
 	/**
 	 * PRI	短信优先级	Tinyint	值越大级别越高,优先发送
 	 */
-	private int pri;
+	private short pri;
 	
 	/**
 	 * PsendTime	预发送时间	Datetime	
@@ -147,11 +147,13 @@ public class SMSSent implements Serializable {
 		this.submitTime = submitTime;
 	}
 
-	public int getPri() {
+
+
+	public short getPri() {
 		return pri;
 	}
 
-	public void setPri(int pri) {
+	public void setPri(short pri) {
 		this.pri = pri;
 	}
 
@@ -209,5 +211,25 @@ public class SMSSent implements Serializable {
 
 	public void setReveivedStatus(String reveivedStatus) {
 		this.reveivedStatus = reveivedStatus;
+	}
+
+	public SMSSent() {
+		super();
+	}
+	
+	public SMSSent(SMSWSend send) {
+		super();
+		if(send != null){
+			this.wsendId  = send.getId();
+			this.sendSn = send.getSendsn();
+			this.mbno = send.getMbno();
+			this.sms = send.getSms();
+			this.wtime = send.getWtime();
+			this.submitTime = send.getSubmitTime();
+			this.pri = send.getPri();
+			this.psendTime = send.getPsendTime();
+			this.plastSendTime  = send.getPlastSendTime();
+			this.status = send.getStatus();
+		}
 	}
 }

@@ -3,7 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-	<display-name>UnityPrimaService</display-name>
+	<display-name>SMSTransferService</display-name>
 	<servlet>
 		<servlet-name>ServiceServlet</servlet-name>
 		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
@@ -13,17 +13,11 @@
 		<description>This is the description of my J2EE component</description>
 		<display-name>This is the display name of my J2EE component</display-name>
 		<servlet-name>TestAction</servlet-name>
-		<servlet-class>cn.edu.sjtu.dclab.slamke.unityprima.webservice.TestAction</servlet-class>
-	</servlet>
-	<servlet>
-		<description>This is the description of my J2EE component</description>
-		<display-name>This is the display name of my J2EE component</display-name>
-		<servlet-name>CustomerService</servlet-name>
-		<servlet-class>cn.edu.sjtu.dclab.slamke.unityprima.webservice.CustomerService</servlet-class>
+		<servlet-class>cn.edu.sjtu.dclab.slamke.unityprima.smstransfer.webservice.TestAction</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>log4jinit</servlet-name>
-		<servlet-class>cn.edu.sjtu.dclab.slamke.unityprima.log.Log4jInit</servlet-class>
+		<servlet-class>cn.edu.sjtu.dclab.slamke.unityprima.smstransfer.log.Log4jInit</servlet-class>
 		<init-param>
 			<param-name>log4j-init-file</param-name>
 			<param-value>\WEB-INF\log4j.properties</param-value>
@@ -43,10 +37,6 @@
 	<servlet-mapping>
 		<servlet-name>TestAction</servlet-name>
 		<url-pattern>/service/test</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>CustomerService</servlet-name>
-		<url-pattern>/service/customer</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>testLogin.jsp</welcome-file>

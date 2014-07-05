@@ -13,8 +13,8 @@ import java.util.logging.Logger;
 public class ConnectTest {
 	public static void main(String[] srg) {
 		String fileName = "database.properties";
-		String userName = "supmid";// = "sa"; //默认用户名
-		String userPwd = "unityprima";// = "root"; //密码
+		String userName /*= "supmid";*/ = "sa"; //默认用户名
+		String userPwd /*= "unityprima";*/ = "root"; //密码
 		Properties p = new Properties();
 		try {
 			String path = ConnectTest.class.getResource("/").getPath()+"/"+fileName;
@@ -35,7 +35,7 @@ public class ConnectTest {
 		}
 
 		String driverName = "com.microsoft.sqlserver.jdbc.SQLServerDriver"; // 加载JDBC驱动
-		String dbURL = "jdbc:sqlserver://192.168.1.158:1433;databaseName=SUPMID;"; // 连接服务器和数据库sample
+		String dbURL = "jdbc:sqlserver://127.0.0.1:1433;databaseName=sms;"; // 连接服务器和数据库sample
 		@SuppressWarnings("unused")
 		Connection dbConn;
 

@@ -51,7 +51,7 @@ public class SMSWSend implements Serializable{
 	/**
 	 * PRI	发送优先级	Tinyint	值越大级别越高,优先发送
 	 */
-	private int pri;
+	private short pri;
 	/**
 	 * PsendTime	预发送时间	Datetime	
 	 */
@@ -108,10 +108,11 @@ public class SMSWSend implements Serializable{
 	public void setSubmitTime(Date submitTime) {
 		this.submitTime = submitTime;
 	}
-	public int getPri() {
+
+	public short getPri() {
 		return pri;
 	}
-	public void setPri(int pri) {
+	public void setPri(short pri) {
 		this.pri = pri;
 	}
 	public Date getPsendTime() {

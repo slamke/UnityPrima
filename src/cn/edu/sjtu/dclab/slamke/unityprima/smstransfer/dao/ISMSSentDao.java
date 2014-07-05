@@ -1,5 +1,7 @@
 package cn.edu.sjtu.dclab.slamke.unityprima.smstransfer.dao;
 
-public interface ISMSSentDao {
+import cn.edu.sjtu.dclab.slamke.unityprima.smstransfer.pojo.SMSSent;
 
+public interface ISMSSentDao {
+	public boolean insertSMSSent(SMSSent sent);
 }
