@@ -22,6 +22,9 @@ public class SMSSentDaoImpl implements ISMSSentDao {
 	@Override
 	public boolean insertSMSSent(SMSSent sent) {
 		// TODO Auto-generated method stub
+		if (sent == null) {
+			return false;
+		}
 		PreparedStatement ps = null;
 		Connection con = dbAccess.getConnection();
 		if (con != null) {
@@ -33,9 +36,6 @@ public class SMSSentDaoImpl implements ISMSSentDao {
 			System.out.println("insertSMSSent sql:"+sql);
 			try {
 				ps = con.prepareStatement(sql);
-				if (sent == null) {
-					return false;
-				}
 				ps.setLong(1, sent.getWsendId());
 				ps.setString(2, sent.getSendSn());
 				ps.setString(3, sent.getMbno());

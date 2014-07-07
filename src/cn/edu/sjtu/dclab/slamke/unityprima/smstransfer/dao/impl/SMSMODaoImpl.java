@@ -3,7 +3,6 @@ package cn.edu.sjtu.dclab.slamke.unityprima.smstransfer.dao.impl;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.sql.Statement;
 import java.util.List;
 
 import cn.edu.sjtu.dclab.slamke.unityprima.smstransfer.dao.ISMSMODao;
@@ -25,6 +24,9 @@ public class SMSMODaoImpl implements ISMSMODao {
 	@Override
 	public boolean insertSMSMO(SMSMO mo) {
 		// TODO Auto-generated method stub
+		if (mo == null) {
+			return false;
+		}
 		PreparedStatement ps = null;
 		Connection con = dbAccess.getConnection();
 		if (con != null) {
@@ -34,9 +36,6 @@ public class SMSMODaoImpl implements ISMSMODao {
 			System.out.println("insertSMSMO sql:" + sql);
 			try {
 				ps = con.prepareStatement(sql);
-				if (mo == null) {
-					return false;
-				}
 				ps.setString(1, mo.getSms());
 				if (mo.getTimes() != null) {
 					ps.setDate(2, new Date(mo.getTimes().getTime()));
@@ -60,7 +59,6 @@ public class SMSMODaoImpl implements ISMSMODao {
 				return false;
 			}
 		}
-
 		return false;
 	}
 

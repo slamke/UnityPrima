@@ -56,7 +56,7 @@ public class TransferService {
 					if (result) {
 						sendDao.deleteSMSWSend(send.getId());
 					}
-					Log.debug("成功转移短信，标志："+send.getId());
+					Log.debug("成功转移短信，send ID标志："+send.getId());
 				}
 				Log.debug("短信转移成功，短信转移条数为："+smswSends.size());
 				return Message.SUCCESS;

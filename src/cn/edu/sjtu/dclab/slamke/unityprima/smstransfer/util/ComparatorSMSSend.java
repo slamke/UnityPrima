@@ -16,7 +16,7 @@ public class ComparatorSMSSend implements Comparator<SMSWSend> {
 			flag = -1;
 		} 
 		if (flag == 0) {
-			return o1.getPsendTime().compareTo(o2.getPlastSendTime());
+			return o2.getPsendTime().compareTo(o1.getPlastSendTime());
 		}
 		return flag;
 	}
