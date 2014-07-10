@@ -43,10 +43,14 @@ public class SMSWSendDaoImpl implements ISMSWSendDao {
             	send.setMbno(rs.getString("Mbno"));
             	send.setSendsn(rs.getString("SendSN"));
             	send.setSms(rs.getString("SMS"));
-            	send.setWtime(rs.getDate("Wtime"));
+            	send.setWtime(rs.getTimestamp("Wtime"));
+            	System.out.println("wtime:"+send.getWtime().toString());
             	send.setSubmitTime(rs.getDate("SubmitTime"));
             	send.setPri(rs.getShort("PRI"));
             	send.setPsendTime(rs.getDate("PsendTime"));
+            	if (send.getPsendTime() != null) {
+            		System.out.println("wtime:"+send.getPsendTime().toString());
+				}
             	send.setPlastSendTime(rs.getDate("PlastSendTime"));
             	send.setStatus(rs.getString("Status"));
             	send.setRemark(rs.getString("Remark"));
@@ -133,7 +137,7 @@ public class SMSWSendDaoImpl implements ISMSWSendDao {
 //        String sql = "update "+ SMSWSend.TABLE_NAME+
 //        		" set SubmitTime=? where Id="+send+ ";";
         String sql = "update "+ SMSWSend.TABLE_NAME+
-        		" set SubmitTime=? where Id=?";
+        		" set SubmitTime=?,[Status]='Submit' where Id=?";
 		if (con != null) {			
 			try {
 				ps = con.prepareStatement(sql);
@@ -186,6 +190,39 @@ public class SMSWSendDaoImpl implements ISMSWSendDao {
 			}
 		}
 		return disList;
+	}
+
+	@Override
+	public SMSWSend getSmswSendById(long id) {
+		// TODO Auto-generated method stub
+		String sql = "select * from "+ SMSWSend.TABLE_NAME+" where Id="+id;
+		System.out.println("getSMSWSendList sql:"+sql);
+		Connection con = dbAccess.getConnection();  
+        Statement statement = dbAccess.getStatement(con); 
+        ResultSet rs = dbAccess.getResultSetQuery(statement, sql);
+        SMSWSend send = null;
+        try {  
+            if(rs.next()){
+            	send = new SMSWSend();
+            	send.setId(id);
+            	send.setMbno(rs.getString("Mbno"));
+            	send.setSendsn(rs.getString("SendSN"));
+            	send.setSms(rs.getString("SMS"));
+            	send.setWtime(rs.getTimestamp("Wtime"));
+            	send.setSubmitTime(rs.getDate("SubmitTime"));
+            	send.setPri(rs.getShort("PRI"));
+            	send.setPsendTime(rs.getDate("PsendTime"));
+            	send.setPlastSendTime(rs.getDate("PlastSendTime"));
+            	send.setStatus(rs.getString("Status"));
+            	send.setRemark(rs.getString("Remark"));
+            }  
+            DBAccess.close(rs);
+            DBAccess.close(statement);
+            DBAccess.close(con);
+        } catch (SQLException e) {  
+            e.printStackTrace();  
+        }
+        return send;
 	}
 
 }

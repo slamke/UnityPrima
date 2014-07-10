@@ -32,7 +32,7 @@ public class SMSSentDaoImpl implements ISMSSentDao {
 					+ SMSSent.TABLE_NAME
 					+ " (WsendId,SendSN,Mbno,SMS,Wtime,SubmitTime,PRI,PsendTime,PlastSendTime,"
 					+"[Status],SubmitRespTime,ReceivedTime,SubmitStatus,ReceivedStatus)"
-					+" values (?, ?, ?, ?,  ?, ?, ?, ?,  ?, ?, ?, ?,  ?, ?,) ";
+					+" values (?, ?, ?, ?,  ?, ?, ?, ?,  ?, ?, ?, ?,  ?, ?) ";
 			System.out.println("insertSMSSent sql:"+sql);
 			try {
 				ps = con.prepareStatement(sql);
@@ -42,9 +42,9 @@ public class SMSSentDaoImpl implements ISMSSentDao {
 				ps.setString(4, sent.getSms());
 				
 				if (sent.getWtime()!= null) {
-					ps.setDate(5, new Date(sent.getWtime().getTime()));	
+					ps.setTimestamp(5, sent.getWtime());	
 				}else {
-					ps.setDate(5, null);
+					ps.setTimestamp(5, null);
 				}
 				if (sent.getSubmitTime() != null) {
 					ps.setDate(6, new Date(sent.getSubmitTime().getTime()));

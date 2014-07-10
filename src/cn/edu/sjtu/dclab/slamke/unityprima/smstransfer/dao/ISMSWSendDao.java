@@ -14,6 +14,13 @@ public interface ISMSWSendDao {
 	public List<SMSWSend> getSMSWSendList();
 	
 	/**
+	 * 根据id获取短信
+	 * @param id
+	 * @return
+	 */
+	public SMSWSend getSmswSendById(long id);
+	
+	/**
 	 * 获取短信失效列表
 	 * 条件：若超过发送时间24小时后状态报告仍未返回，则搬运模块程序也会将该短信记录从tb_Wsend表移至tb_Sent表
 	 * 若短信有“预发送时间”和“最后发送时间”，且当前时间大于“最后发送时间”，无论短信的状态是否为0，短信搬运模块应当把该短信搬运到该表中
