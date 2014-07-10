@@ -36,7 +36,7 @@ public class ReceiverService {
 	@Path("/items")
 	@Produces("application/json")
 	public String uploadSMSMO(@FormParam("key") String key,@FormParam("content") String content){
-		Log.debug("接收短信，时间："+Calendar.getInstance().toString());
+		Log.debug("接收短信，时间："+Calendar.getInstance().getTime().toString());
 		String code = Calendar.YEAR+"-"+Calendar.MONTH+"-"+Calendar.DAY_OF_MONTH+"unityprima";
 		if (key!= null && key.equals(new MD5().getMD5Str(code))) {
 			ClassParse parse = new ClassParse();

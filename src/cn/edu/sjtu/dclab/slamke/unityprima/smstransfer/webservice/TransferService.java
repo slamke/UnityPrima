@@ -41,12 +41,12 @@ public class TransferService {
 	@Path("/notify")
 	@Produces("application/json")
 	public String transferSMS(@FormParam("key")String key){
-		Log.debug("提示服务器进行短信转移，时间："+Calendar.getInstance().toString());
+		Log.debug("提示服务器进行短信搬运，时间："+Calendar.getInstance().getTime().toString());
 		String code = Calendar.YEAR+"-"+Calendar.MONTH+"-"+Calendar.DAY_OF_MONTH+"unityprima";
 		if (key!= null && key.equals(new MD5().getMD5Str(code))) {
 			List<SMSWSend> smswSends = sendDao.geSmswSendDisableList();
 			if(smswSends == null || smswSends.size() == 0){
-				Log.debug("提示服务器进行短信转移成功：无待转移短信");
+				Log.debug("提示服务器进行短信搬运成功：无待搬运短信");
 				return Message.SUCCESS;
 			}else {
 				for (int i = 0; i < smswSends.size(); i++) {
@@ -56,13 +56,13 @@ public class TransferService {
 					if (result) {
 						sendDao.deleteSMSWSend(send.getId());
 					}
-					Log.debug("成功转移短信，send ID标志："+send.getId());
+					Log.debug("成功搬运短信，send ID标志："+send.getId());
 				}
-				Log.debug("短信转移成功，短信转移条数为："+smswSends.size());
+				Log.debug("短信搬运成功，短信搬运条数为："+smswSends.size());
 				return Message.SUCCESS;
 			}
 		}else {
-			Log.debug("提示服务器进行短信转移失败：验证码错误");
+			Log.debug("提示服务器进行短信搬运失败：验证码错误");
 			return Message.ERROR;
 		}
 	}
