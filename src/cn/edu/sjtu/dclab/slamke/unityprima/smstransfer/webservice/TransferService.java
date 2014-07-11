@@ -44,6 +44,7 @@ public class TransferService {
 		Log.debug("提示服务器进行短信搬运，时间："+Calendar.getInstance().getTime().toString());
 		String code = Calendar.YEAR+"-"+Calendar.MONTH+"-"+Calendar.DAY_OF_MONTH+"unityprima";
 		if (key!= null && key.equals(new MD5().getMD5Str(code))) {
+			System.out.println("搬运短信");
 			List<SMSWSend> smswSends = sendDao.geSmswSendDisableList();
 			if(smswSends == null || smswSends.size() == 0){
 				Log.debug("提示服务器进行短信搬运成功：无待搬运短信");

@@ -43,12 +43,11 @@ public class SMSWSendDaoImpl implements ISMSWSendDao {
             	send.setSendsn(rs.getString("SendSN"));
             	send.setSms(rs.getString("SMS"));
             	send.setWtime(rs.getTimestamp("Wtime"));
-            	System.out.println("wtime:"+send.getWtime().toString());
             	send.setSubmitTime(rs.getTimestamp("SubmitTime"));
             	send.setPri(rs.getShort("PRI"));
             	send.setPsendTime(rs.getTimestamp("PsendTime"));
             	if (send.getPsendTime() != null) {
-            		System.out.println("wtime:"+send.getPsendTime().toString());
+            		System.out.println("getPsendTime:"+send.getPsendTime().toString());
 				}
             	send.setPlastSendTime(rs.getTimestamp("PlastSendTime"));
             	send.setStatus(rs.getString("Status"));
@@ -80,7 +79,8 @@ public class SMSWSendDaoImpl implements ISMSWSendDao {
 			}
         	//该短信尚未到发送时间
         	if (smswSend.getPsendTime() != null) {
-				if (smswSend.getPsendTime().compareTo(new java.util.Date()) < 0 ) {
+        		//发送时间更晚。。。
+				if (smswSend.getPsendTime().compareTo(new java.util.Date()) > 0 ) {
 					tasks.remove(i);
 					continue;
 				}

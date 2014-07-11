@@ -39,6 +39,7 @@ public class ReceiverService {
 		Log.debug("接收短信，时间："+Calendar.getInstance().getTime().toString());
 		String code = Calendar.YEAR+"-"+Calendar.MONTH+"-"+Calendar.DAY_OF_MONTH+"unityprima";
 		if (key!= null && key.equals(new MD5().getMD5Str(code))) {
+			System.out.println("接收短信");
 			ClassParse parse = new ClassParse();
 			Log.debug("接收短信，内容："+content);
 			Type type = new TypeToken<ArrayList<SMSMO>>(){}.getType();

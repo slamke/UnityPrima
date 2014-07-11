@@ -44,6 +44,7 @@ public class SenderService {
 		Log.debug("获取短信发送列表，时间："+Calendar.getInstance().getTime().toString());
 		String code = Calendar.YEAR+"-"+Calendar.MONTH+"-"+Calendar.DAY_OF_MONTH+"unityprima";
 		if (key!= null && key.equals(new MD5().getMD5Str(code))) {
+			System.out.println("发送短信");
 			List<SMSWSend> smswSends = taskDao.getSMSWSendList();
 			if(smswSends == null || smswSends.size() == 0){
 				Log.debug("获取短信发送列表成功：无待发送短信");
