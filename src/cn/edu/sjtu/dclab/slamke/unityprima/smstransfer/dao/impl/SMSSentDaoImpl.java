@@ -1,7 +1,6 @@
 package cn.edu.sjtu.dclab.slamke.unityprima.smstransfer.dao.impl;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 
 import cn.edu.sjtu.dclab.slamke.unityprima.smstransfer.dao.ISMSSentDao;
@@ -47,38 +46,38 @@ public class SMSSentDaoImpl implements ISMSSentDao {
 					ps.setTimestamp(5, null);
 				}
 				if (sent.getSubmitTime() != null) {
-					ps.setDate(6, new Date(sent.getSubmitTime().getTime()));
+					ps.setTimestamp(6, sent.getSubmitTime());
 				}else {
-					ps.setDate(6, null);
+					ps.setTimestamp(6, null);
 				}
 				
 				ps.setShort(7, sent.getPri());
 				
 				if (sent.getPsendTime() != null) {
-					ps.setDate(8, new Date(sent.getPsendTime().getTime()));
+					ps.setTimestamp(8, sent.getPsendTime());
 				}else {
-					ps.setDate(8, null);
+					ps.setTimestamp(8, null);
 				}
 				
 				
 				if (sent.getPlastSendTime() != null) {
-					ps.setDate(9, new Date(sent.getPlastSendTime().getTime()));
+					ps.setTimestamp(9, sent.getPlastSendTime());
 				}else {
-					ps.setDate(9, null);
+					ps.setTimestamp(9, null);
 				}
 				
 				ps.setString(10, sent.getStatus());
 				
 				if (sent.getSubmitRespTime() != null) {
-					ps.setDate(11, new Date(sent.getSubmitRespTime().getTime()));
+					ps.setTimestamp(11, sent.getSubmitRespTime());
 				}else {
-					ps.setDate(11, null);
+					ps.setTimestamp(11, null);
 				}
 				
 				if (sent.getReveivedTime() != null) {
-					ps.setDate(12, new Date(sent.getReveivedTime().getTime()));
+					ps.setTimestamp(12, sent.getReveivedTime());
 				}else {
-					ps.setDate(12, null);
+					ps.setTimestamp(12, null);
 				}
 				
 				

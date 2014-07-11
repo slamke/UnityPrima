@@ -1,7 +1,6 @@
 package cn.edu.sjtu.dclab.slamke.unityprima.smstransfer.dao.impl;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -45,13 +44,13 @@ public class SMSWSendDaoImpl implements ISMSWSendDao {
             	send.setSms(rs.getString("SMS"));
             	send.setWtime(rs.getTimestamp("Wtime"));
             	System.out.println("wtime:"+send.getWtime().toString());
-            	send.setSubmitTime(rs.getDate("SubmitTime"));
+            	send.setSubmitTime(rs.getTimestamp("SubmitTime"));
             	send.setPri(rs.getShort("PRI"));
-            	send.setPsendTime(rs.getDate("PsendTime"));
+            	send.setPsendTime(rs.getTimestamp("PsendTime"));
             	if (send.getPsendTime() != null) {
             		System.out.println("wtime:"+send.getPsendTime().toString());
 				}
-            	send.setPlastSendTime(rs.getDate("PlastSendTime"));
+            	send.setPlastSendTime(rs.getTimestamp("PlastSendTime"));
             	send.setStatus(rs.getString("Status"));
             	send.setRemark(rs.getString("Remark"));
             	tasks.add(send);
@@ -142,9 +141,9 @@ public class SMSWSendDaoImpl implements ISMSWSendDao {
 			try {
 				ps = con.prepareStatement(sql);
 				if (send.getSubmitTime() != null) {
-					ps.setDate(1, new Date(send.getSubmitTime().getTime()));
+					ps.setTimestamp(1, send.getSubmitTime());
 				}else {
-					ps.setDate(1, null);
+					ps.setTimestamp(1, null);
 				}
 				ps.setLong(2, send.getId());
 				int i = ps.executeUpdate();
@@ -209,10 +208,10 @@ public class SMSWSendDaoImpl implements ISMSWSendDao {
             	send.setSendsn(rs.getString("SendSN"));
             	send.setSms(rs.getString("SMS"));
             	send.setWtime(rs.getTimestamp("Wtime"));
-            	send.setSubmitTime(rs.getDate("SubmitTime"));
+            	send.setSubmitTime(rs.getTimestamp("SubmitTime"));
             	send.setPri(rs.getShort("PRI"));
-            	send.setPsendTime(rs.getDate("PsendTime"));
-            	send.setPlastSendTime(rs.getDate("PlastSendTime"));
+            	send.setPsendTime(rs.getTimestamp("PsendTime"));
+            	send.setPlastSendTime(rs.getTimestamp("PlastSendTime"));
             	send.setStatus(rs.getString("Status"));
             	send.setRemark(rs.getString("Remark"));
             }  
@@ -224,5 +223,4 @@ public class SMSWSendDaoImpl implements ISMSWSendDao {
         }
         return send;
 	}
-
 }

@@ -1,7 +1,6 @@
 package cn.edu.sjtu.dclab.slamke.unityprima.smstransfer.dao.impl;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.util.List;
 
@@ -38,9 +37,9 @@ public class SMSMODaoImpl implements ISMSMODao {
 				ps = con.prepareStatement(sql);
 				ps.setString(1, mo.getSms());
 				if (mo.getTimes() != null) {
-					ps.setDate(2, new Date(mo.getTimes().getTime()));
+					ps.setTimestamp(2, mo.getTimes());
 				}else {
-					ps.setDate(2, null);
+					ps.setTimestamp(2, null);
 				}
 				ps.setString(3, mo.getMbno());
 				ps.setString(4, mo.getSendSN());
